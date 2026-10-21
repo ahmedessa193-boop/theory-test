@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theory Test · اختبار نظري</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#A50034;--red-dark:#7A0026;--red-soft:#FBEAEF;--ink:#1F1F1F;--muted:#5C5C5C;--line:#E6E6E6;--line2:#D4D4D4;--ground:#FFFFFF;--panel:#F7F7F7;--ok:#0B6B3A;--ok-bg:#E7F4EC;--bad:#A50034;--bad-bg:#FBEAEF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:'IBM Plex Sans Arabic',system-ui,'Segoe UI',Tahoma,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+button,input{font-family:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+button:disabled{cursor:not-allowed}
+.hidden{display:none!important}
+header{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 5%;background:var(--red);color:#fff}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px}
+.logo{width:38px;height:38px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap}
+.hbtn{min-height:44px;padding:0 18px;border-radius:99px;border:1px solid rgba(255,255,255,.7);background:transparent;color:#fff;font-size:15px;font-weight:500}
+.hbtn:hover{background:rgba(255,255,255,.12)}
+.btn{min-height:48px;padding:0 26px;border-radius:99px;font-size:16px;font-weight:600}
+.btn-primary{border:0;background:var(--red);color:#fff}
+.btn-primary:hover:not(:disabled){background:var(--red-dark)}
+.btn-ghost{border:1.5px solid var(--line2);background:#fff;color:var(--ink)}
+.btn-ghost:hover:not(:disabled){border-color:var(--red);color:var(--red)}
+.btn:disabled{opacity:.4}
+main{position:relative;z-index:1;flex:1;display:flex;justify-content:center;padding:48px 5% 64px}
+.wrap{width:100%;max-width:780px;display:flex;flex-direction:column;gap:24px}
+.wrap.wide{max-width:1080px}
+.bg-mark{position:fixed;inset:0;z-index:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;text-align:center;user-select:none}
+.bg-mark .y{font-size:clamp(160px,30vw,420px);font-weight:700;line-height:.9;color:rgba(165,0,52,.06);letter-spacing:-.02em}
+.bg-mark .w{font-size:clamp(34px,7vw,104px);font-weight:700;line-height:1.05;color:rgba(165,0,52,.09);letter-spacing:.04em}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.hero .t1{font-size:clamp(22px,3.4vw,30px);font-weight:700;color:var(--red)}
+.hero .t2{margin:0;font-size:clamp(44px,8vw,76px);line-height:1.15;font-weight:700;color:var(--ink)}
+.hero .t3{font-size:clamp(32px,5.6vw,54px);line-height:1.15;font-weight:700;color:var(--red)}
+.hero .cnt{margin:6px 0 0;font-size:17px;color:var(--muted)}
+.eyebrow{font-size:14px;font-weight:600;color:var(--red);letter-spacing:.06em}
+h1{margin:0;font-size:clamp(32px,6vw,46px);line-height:1.2;font-weight:700}
+h1 span{color:var(--red)}
+.lead{margin:0;font-size:17px;line-height:1.6;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:16px;font-weight:600}
+.field input{min-height:56px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line2);font-size:18px;color:var(--ink);background:#fff}
+.field input:focus{border-color:var(--red);outline:none;box-shadow:0 0 0 3px var(--red-soft)}
+.hint{font-size:14px;color:var(--muted)}
+.err{font-size:14px;color:var(--red);font-weight:600}
+.langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.lang{min-height:132px;padding:24px;border-radius:16px;border:1.5px solid var(--line2);background:#fff;color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:16px;transition:border-color .15s,box-shadow .15s}
+.lang:hover:not(:disabled){border-color:var(--red);box-shadow:0 6px 18px rgba(165,0,52,.10)}
+.lang:disabled{opacity:.45}
+.lang small{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.06em}
+.lang .row{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px}
+.lang .name{font-size:28px;font-weight:700}
+.arrow{width:42px;height:42px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:15px;color:var(--muted)}
+.meta b{color:var(--ink)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar div{height:6px;background:var(--red);width:0;transition:width .25s ease}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:22px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+@media (max-width:560px){.card{padding:22px}}
+h2{margin:0;font-size:22px;line-height:1.65;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{min-height:56px;width:100%;padding:14px 16px;border-radius:12px;border:2px solid var(--line2);background:#fff;color:var(--ink);font-size:17px;line-height:1.55;text-align:start;display:flex;align-items:center;gap:14px;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--red)}
+.opt .l{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--panel);border:1px solid var(--line2);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+.opt .t{flex:1;min-width:0}
+.opt.sel{border-color:var(--red);background:var(--red-soft)}
+.opt.sel .l{background:var(--red);border-color:var(--red);color:#fff}
+.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.center{align-items:center;text-align:center}
+.done-ico{width:72px;height:72px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat{background:var(--panel);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.stat span{font-size:14px;color:var(--muted)}
+.stat b{font-size:30px;font-weight:700}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:720px}
+th,td{padding:14px 16px;text-align:start;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--panel);font-weight:600;color:var(--muted);font-size:14px}
+tr:last-child td{border-bottom:0}
+td.nm{font-weight:600;white-space:normal}
+.pill{display:inline-block;font-size:14px;font-weight:600;padding:4px 12px;border-radius:99px}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.bad{background:var(--bad-bg);color:var(--bad)}
+.link{background:none;border:0;color:var(--red);font-weight:600;font-size:15px;min-height:44px;padding:0 8px;text-decoration:underline}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.qrow{border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.qrow.wrong{border-color:#E8B4C4;background:#FFF8FA}
+.qrow .n{font-size:14px;font-weight:600;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+.qrow .q{font-size:16px;line-height:1.6;font-weight:600}
+.qrow .y{font-size:15px;line-height:1.5}
+.qrow .c{font-size:15px;line-height:1.5;color:var(--ok);font-weight:600}
+</style>
+</head>
+<body>
+<div class="bg-mark" aria-hidden="true" dir="ltr"><span class="y">2026</span><span class="w">LG SKILL<br>OLYMPIAD</span></div>
+<header>
+<div class="brand"><div class="logo"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A50034" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span id="brand">اختبار نظري · Theory Test</span></div>
+<div class="hbtns">
+<button id="supBtn" class="hbtn">المشرف · Supervisor</button>
+<button id="exit" class="hbtn hidden"></button>
+</div>
+</header>
+<main><div class="wrap" id="wrap">
+
+<!-- Examinee: start -->
+<section id="home" style="display:flex;flex-direction:column;gap:28px;padding-top:12px">
+<div class="hero">
+<span class="t1">اختبار نظري · Theory Test</span>
+<h1 class="t2">ابدأ الاختبار</h1>
+<span class="t3" lang="en" dir="ltr">Start your test</span>
+<p class="cnt" id="count"></p>
+</div>
+<div class="field">
+<label for="nameIn">اكتب اسمك · Your full name</label>
+<input id="nameIn" type="text" autocomplete="name" maxlength="80" placeholder="الاسم بالكامل · Full name">
+<span class="hint">اكتب اسمك ثم اختر لغة الاختبار · Enter your name, then choose the test language</span>
+</div>
+<div class="langs">
+<button class="lang" id="startAr" lang="ar" dir="rtl" style="text-align:right" disabled><small>AR</small><span class="row"><span class="name">العربية</span><span class="arrow"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg></span></span></button>
+<button class="lang" id="startEn" lang="en" dir="ltr" style="text-align:left" disabled><small>EN</small><span class="row"><span class="name">English</span><span class="arrow"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></span></button>
+</div>
+</section>
+
+<!-- Examinee: questions -->
+<section id="quiz" class="hidden" style="display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<div class="meta"><b id="prog"></b><span id="who"></span></div>
+<div class="bar"><div id="barFill"></div></div>
+</div>
+<article class="card">
+<h2 id="qText"></h2>
+<div class="opts" id="opts"></div>
+</article>
+<div class="nav">
+<button id="prev" class="btn btn-ghost"></button>
+<button id="next" class="btn btn-primary"></button>
+</div>
+</section>
+
+<!-- Examinee: submitted (no score shown) -->
+<section id="done" class="hidden">
+<div class="card center" style="padding:48px 32px;gap:16px">
+<div class="done-ico"><svg aria-hidden="true" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+<h2 id="doneTitle" style="font-size:28px"></h2>
+<p class="lead" id="doneText"></p>
+<button id="doneBack" class="btn btn-primary" style="margin-top:8px"></button>
+</div>
+</section>
+
+<!-- Supervisor: PIN -->
+<section id="pin" class="hidden">
+<div class="card" style="max-width:460px;margin:0 auto;width:100%">
+<h2 style="font-size:24px">دخول المشرف</h2>
+<p class="lead" style="font-size:15px">النتائج تظهر للمشرف فقط. أدخل الرقم السري.</p>
+<div class="field">
+<label for="pinIn">الرقم السري</label>
+<input id="pinIn" type="password" inputmode="numeric" autocomplete="off">
+<span id="pinErr" class="err hidden">الرقم السري غير صحيح</span>
+</div>
+<div class="nav">
+<button id="pinCancel" class="btn btn-ghost">رجوع</button>
+<button id="pinGo" class="btn btn-primary">دخول</button>
+</div>
+</div>
+</section>
+
+<!-- Supervisor: dashboard -->
+<section id="sup" class="hidden" style="display:flex;flex-direction:column;gap:22px">
+<div class="toolbar">
+<h1 style="font-size:32px">نتائج الممتحنين</h1>
+<div class="hbtns">
+<button id="csv" class="btn btn-ghost">تصدير Excel (CSV)</button>
+<button id="clearAll" class="btn btn-ghost">مسح كل النتائج</button>
+</div>
+</div>
+<div class="stats">
+<div class="stat"><span>عدد الممتحنين</span><b id="sCount">0</b></div>
+<div class="stat"><span>متوسط النتيجة</span><b id="sAvg">–</b></div>
+<div class="stat"><span>نسبة النجاح</span><b id="sPass">–</b></div>
+<div class="stat"><span>درجة النجاح</span><b id="sMark"></b></div>
+</div>
+<div class="tablebox">
+<table>
+<thead><tr><th>الاسم</th><th>اللغة</th><th>التاريخ والوقت</th><th>الدرجة</th><th>النسبة</th><th>النتيجة</th><th></th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+</section>
+
+<!-- Supervisor: one attempt -->
+<section id="detail" class="hidden" style="display:flex;flex-direction:column;gap:20px">
+<div class="toolbar">
+<button id="backSup" class="btn btn-ghost">← رجوع للنتائج</button>
+</div>
+<div class="card" style="gap:14px">
+<h1 id="dName" style="font-size:30px"></h1>
+<div class="meta" style="flex-wrap:wrap"><span id="dMeta"></span><span id="dVerdict"></span></div>
+</div>
+<div id="dList" style="display:flex;flex-direction:column;gap:12px"></div>
+</section>
+
+</div></main>
+<script>
+const T = {
+ en:{q:'Question',of:'of',prev:'Previous',next:'Next',submit:'Submit test',sending:'Submitting…',exit:'Exit test',examinee:'Examinee: ',
+   doneTitle:'Your answers have been submitted',doneText:'Thank you, {name}. Your supervisor will share your result with you.',doneBack:'Back to start',
+   confirmExit:'Exit the test? Your answers will not be saved.',confirmSubmit:'Submit your answers now? You can’t change them after submitting.',
+   unanswered:'Please answer all questions before submitting. Unanswered: ',failed:'Could not submit. Check the internet connection and try again.',letters:['A','B','C','D']},
+ ar:{q:'السؤال',of:'من',prev:'السابق',next:'التالي',submit:'تسليم الاختبار',sending:'جارٍ التسليم…',exit:'إنهاء الاختبار',examinee:'الممتحن: ',
+   doneTitle:'تم تسليم إجاباتك',doneText:'شكراً يا {name}. المشرف هيبلغك بالنتيجة.',doneBack:'العودة للبداية',
+   confirmExit:'هل تريد إنهاء الاختبار؟ لن يتم حفظ إجاباتك.',confirmSubmit:'هل تريد تسليم الإجابات الآن؟ لن تستطيع تعديلها بعد التسليم.',
+   unanswered:'من فضلك أجب على كل الأسئلة قبل التسليم. أسئلة بدون إجابة: ',failed:'تعذّر التسليم. تأكد من الاتصال بالإنترنت وحاول مرة أخرى.',letters:['أ','ب','ج','د']}
+};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let DATA = null;
+let S = {screen:'home', lang:'ar', idx:0, answers:[], name:''};
+let PIN = '', RESULTS = [], PASS = 80, DETAIL = null, sending = false;
+
+function fmtDate(iso){ try{ return new Date(iso).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'}); }catch(e){ return iso; } }
+async function api(path, opts={}){
+  const headers = Object.assign({'content-type':'application/json'}, opts.headers||{});
+  if (PIN) headers['x-supervisor-pin'] = PIN;
+  const r = await fetch(path, Object.assign({}, opts, {headers}));
+  if (r.status === 401) { const e = new Error('unauthorized'); e.code = 401; throw e; }
+  if (!r.ok) throw new Error('http '+r.status);
+  return r.json();
+}
+function show(screen){ S.screen=screen; render(); window.scrollTo(0,0); }
+
+async function loadQuestions(){
+  try { DATA = await api('/api/questions'); }
+  catch(e){ $('count').textContent = 'تعذّر تحميل الأسئلة. أعد تحميل الصفحة. · Could not load questions. Reload the page.'; return; }
+  render();
+}
+function start(lang){
+  const name = $('nameIn').value.trim();
+  if (!DATA || name.length < 2) { $('nameIn').focus(); return; }
+  S = {screen:'quiz', lang, idx:0, answers:new Array(DATA[lang].length).fill(null), name};
+  render(); window.scrollTo(0,0);
+}
+async function submit(){
+  const t=T[S.lang];
+  const missing = S.answers.map((a,i)=>a==null?i+1:null).filter(Boolean);
+  if (missing.length){ alert(t.unanswered + missing.join(', ')); S.idx = missing[0]-1; render(); return; }
+  if (!confirm(t.confirmSubmit)) return;
+  sending = true; render();
+  try { await api('/api/submit', {method:'POST', body: JSON.stringify({name:S.name, lang:S.lang, answers:S.answers})}); sending=false; show('done'); }
+  catch(e){ sending=false; render(); alert(t.failed); }
+}
+async function openSup(){
+  try { const d = await api('/api/results'); RESULTS = d.results; PASS = d.passMark; show('sup'); }
+  catch(e){ if (e.code===401){ PIN=''; $('pinErr').textContent='الرقم السري غير صحيح'; } else { $('pinErr').textContent='تعذّر الاتصال بالخادم'; } $('pinErr').classList.remove('hidden'); if(S.screen!=='pin') show('pin'); }
+}
+async function openDetail(id){
+  try { DETAIL = await api('/api/results/'+encodeURIComponent(id)); show('detail'); } catch(e){ alert('تعذّر تحميل التفاصيل'); }
+}
+
+function render(){
+  const scr=S.screen, exam = scr==='quiz'||scr==='done';
+  const lang = exam ? S.lang : 'ar';
+  document.documentElement.lang = lang; document.documentElement.dir = lang==='ar'?'rtl':'ltr';
+  ['home','quiz','done','pin','sup','detail'].forEach(id => $(id).classList.toggle('hidden', scr!==id));
+  $('wrap').classList.toggle('wide', scr==='sup');
+  $('supBtn').classList.toggle('hidden', scr!=='home');
+  $('exit').classList.toggle('hidden', !(scr==='quiz'||scr==='sup'||scr==='detail'));
+  $('exit').textContent = scr==='quiz' ? T[S.lang].exit : 'خروج من وضع المشرف';
+
+  if (scr==='home'){
+    if (DATA) $('count').textContent = DATA.ar.length+' سؤالاً · '+DATA.en.length+' questions';
+    else if (!$('count').textContent) $('count').textContent = 'جارٍ تحميل الأسئلة… · Loading questions…';
+    const ok = !!DATA && $('nameIn').value.trim().length>=2;
+    $('startAr').disabled = !ok; $('startEn').disabled = !ok;
+  }
+  if (scr==='quiz'){
+    const t=T[S.lang], qs=DATA[S.lang], n=qs.length, q=qs[S.idx], chosen=S.answers[S.idx];
+    const answered = S.answers.filter(a=>a!=null).length;
+    $('prog').textContent = t.q+' '+(S.idx+1)+' '+t.of+' '+n;
+    $('who').textContent = t.examinee + S.name;
+    $('barFill').style.width = Math.round(answered/n*100)+'%';
+    $('qText').textContent = q.q;
+    $('opts').innerHTML = q.a.map((a,i)=>'<button class="opt'+(i===chosen?' sel':'')+'" data-i="'+i+'" aria-pressed="'+(i===chosen)+'"><span class="l">'+t.letters[i]+'</span><span class="t">'+esc(a)+'</span></button>').join('');
+    $('prev').textContent=t.prev; $('prev').disabled = S.idx===0 || sending;
+    const last = S.idx===n-1;
+    $('next').textContent = sending ? t.sending : (last ? t.submit : t.next); $('next').disabled = chosen==null || sending;
+  }
+  if (scr==='done'){
+    const t=T[S.lang];
+    $('doneTitle').textContent=t.doneTitle; $('doneText').textContent=t.doneText.replace('{name}', S.name); $('doneBack').textContent=t.doneBack;
+  }
+  if (scr==='sup'){
+    const list = RESULTS;
+    $('sMark').textContent = PASS+'%';
+    $('sCount').textContent = list.length;
+    if (list.length){
+      $('sAvg').textContent = Math.round(list.reduce((x,a)=>x+a.pct,0)/list.length)+'%';
+      $('sPass').textContent = Math.round(list.filter(a=>a.passed).length/list.length*100)+'%';
+    } else { $('sAvg').textContent='–'; $('sPass').textContent='–'; }
+    $('rows').innerHTML = list.length ? list.map(a=>'<tr><td class="nm">'+esc(a.name)+'</td><td>'+(a.lang==='ar'?'العربية':'English')+'</td><td dir="ltr" style="text-align:end">'+esc(fmtDate(a.date))+'</td><td>'+a.score+' / '+a.total+'</td><td><b>'+a.pct+'%</b></td><td><span class="pill '+(a.passed?'ok':'bad')+'">'+(a.passed?'ناجح':'راسب')+'</span></td><td><button class="link" data-id="'+esc(a.id)+'">التفاصيل</button></td></tr>').join('')
+      : '<tr><td colspan="7" class="empty">لا توجد نتائج بعد. ستظهر هنا بعد أن يسلّم أول ممتحن.</td></tr>';
+  }
+  if (scr==='detail' && DETAIL){
+    const a=DETAIL, L=T[a.lang].letters, ltr=a.lang==='en';
+    $('dName').textContent = a.name;
+    $('dMeta').innerHTML = esc((a.lang==='ar'?'العربية':'English')+' · ')+'<span dir="ltr">'+esc(fmtDate(a.date))+'</span>'+esc(' · '+a.score+' / '+a.total+' · '+a.pct+'%');
+    $('dVerdict').innerHTML = '<span class="pill '+(a.passed?'ok':'bad')+'">'+(a.passed?'ناجح':'راسب')+'</span>';
+    $('dList').innerHTML = a.items.map((it,i)=>'<div class="qrow'+(it.ok?'':' wrong')+'"><div class="n"><span>السؤال '+(i+1)+'</span><span class="pill '+(it.ok?'ok':'bad')+'">'+(it.ok?'صحيح':'خطأ')+'</span></div>'+
+        '<div dir="'+(ltr?'ltr':'rtl')+'" lang="'+a.lang+'" style="display:flex;flex-direction:column;gap:6px;text-align:start"><span class="q">'+esc(it.q)+'</span>'+
+        '<span class="y" style="color:'+(it.ok?'var(--ok)':'var(--bad)')+'">'+(ltr?'Answer: ':'الإجابة: ')+(it.chosen!=null?L[it.chosen]+' — '+esc(it.a[it.chosen]):'—')+'</span>'+
+        (it.ok?'':'<span class="c">'+(ltr?'Correct: ':'الصحيحة: ')+L[it.correct]+' — '+esc(it.a[it.correct])+'</span>')+'</div></div>').join('');
+  }
+}
+
+$('nameIn').addEventListener('input', render);
+$('nameIn').addEventListener('keydown', e=>{ if(e.key==='Enter' && $('nameIn').value.trim().length>=2) start('ar'); });
+$('startEn').onclick=()=>start('en');
+$('startAr').onclick=()=>start('ar');
+$('opts').onclick=e=>{ const b=e.target.closest('.opt'); if(!b||sending) return; S.answers[S.idx]=+b.dataset.i; render(); };
+$('prev').onclick=()=>{ if(S.idx>0){S.idx--; render();} };
+$('next').onclick=()=>{ if(S.answers[S.idx]==null||sending) return; if(S.idx>=DATA[S.lang].length-1) submit(); else { S.idx++; render(); window.scrollTo(0,0);} };
+$('exit').onclick=()=>{ if(S.screen==='quiz'){ if(confirm(T[S.lang].confirmExit)) show('home'); } else { PIN=''; RESULTS=[]; DETAIL=null; show('home'); } };
+$('doneBack').onclick=()=>{ $('nameIn').value=''; show('home'); };
+$('supBtn').onclick=()=>{ $('pinIn').value=''; $('pinErr').classList.add('hidden'); show('pin'); setTimeout(()=>$('pinIn').focus(),50); };
+$('pinCancel').onclick=()=>show('home');
+function tryPin(){ PIN = $('pinIn').value; if(!PIN) return; openSup(); }
+$('pinGo').onclick=tryPin;
+$('pinIn').addEventListener('keydown', e=>{ if(e.key==='Enter') tryPin(); });
+$('rows').onclick=e=>{ const b=e.target.closest('[data-id]'); if(b) openDetail(b.dataset.id); };
+$('backSup').onclick=()=>openSup();
+$('clearAll').onclick=async()=>{ if(!confirm('مسح كل النتائج نهائياً؟ لا يمكن التراجع.')) return; try{ await api('/api/results',{method:'DELETE'}); openSup(); }catch(e){ alert('تعذّر المسح'); } };
+$('csv').onclick=()=>{
+  const head=['Name','Language','Date','Score','Total','Percent','Result'];
+  const nq = Math.max(0, ...RESULTS.map(a=>a.marks.length));
+  for(let i=0;i<nq;i++) head.push('Q'+(i+1));
+  const rows=[head].concat(RESULTS.map(a=>[a.name,a.lang==='ar'?'Arabic':'English',fmtDate(a.date),a.score,a.total,a.pct+'%',a.passed?'Pass':'Fail'].concat(a.marks.map(m=>m?'✓':'✗'))));
+  const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  const a=document.createElement('a'); a.href=url; a.download='theory-test-results.csv'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+render();
+loadQuestions();
+</script>
+</body>
+</html>
